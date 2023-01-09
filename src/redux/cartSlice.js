@@ -64,7 +64,7 @@ export const sendCardData = (cart) => async (dispatch) => {
             body: JSON.stringify(cart)
         })
         const data = await res.json();
-        console.log(data)
+        // console.log(data)
 
         //send state when request is successful
         dispatch(
