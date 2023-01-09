@@ -78,8 +78,9 @@ export const sendCardData = (cart) => async (dispatch) => {
     try {
         await sendRequest();
     } catch (err) {
-        //for errors
-        dispatch(showNotification({
+        //when error occurs
+        dispatch(
+            showNotification({
             open: true,
             message: 'Sending Request failed',
             type: 'error'

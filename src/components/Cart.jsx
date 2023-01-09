@@ -8,13 +8,13 @@ const Cart = () => {
   const quantity = useSelector(state => state.cart.totalQuantity);
   const dispatch = useDispatch();
 
-  const showCart = () => [
+  const showCart = () => {
     dispatch(setShowCart())
-  ]
+  }
 
   return (
-    <div className="cartIcon">
-      <h3 onClick={showCart}>Cart: {quantity} Items</h3>
+    <div>
+      <h3 className="cartIcon" onClick={showCart}>Show Cart Items: {quantity}</h3>
     </div>
   );
 };

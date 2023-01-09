@@ -4,13 +4,14 @@ ul {
   li {
     padding: 10px;
   }
-  .cartIcon h3 {
+  .cartIcon {
     border: 1px solid #ccc;
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
   }
-  .cartIcon h3:hover{
+ 
+  .cartIcon:hover{
     background: rgb(158, 152, 152);
   }
   .cart-container {
