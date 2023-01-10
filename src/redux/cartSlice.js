@@ -58,8 +58,8 @@ export const sendCardData = (cart) => async (dispatch) => {
         type: 'warning'
     }));
 
-    const sendRequest = async () => {
-        const res = await fetch(`https://first-redux-${import.meta.env.VITE_DB_URL}.firebasedatabase.app/cartItems.json`, {
+    const sendRequest = async (index) => {
+        const res = await fetch(`https://first-redux-${import.meta.env.VITE_DB_URL}.firebasedatabase.app/cartItems.json?i=${index}`, {
             method: 'PUT',
             body: JSON.stringify(cart)
         })
