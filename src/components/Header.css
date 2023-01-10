@@ -16,10 +16,11 @@
 .header-h2 {
   font-family: monospace;
   font-size: 30px;
+  /* color: orangered; */
 }
 
 /* .header-cart {
-  position: absolute;
+ padding-left: 100px;
 } */
 
 .logout-btn{
@@ -32,7 +33,17 @@
   background: rgb(0, 6, 59);
 }
 
-@media (max-width: 360px) {
+header{
+  background-color: rgb(235, 235, 235);
+}
+
+/* @media (max-width: 460px) {
+  .header-nav{
+    width: 100%;
+    
+  }
+} */
+@media (max-width: 460px) {
   .header-ul{
     display: grid;
     justify-content: center;

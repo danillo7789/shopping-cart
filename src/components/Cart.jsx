@@ -13,8 +13,9 @@ const Cart = () => {
   }
 
   return (
-    <div>
-      <h3 className="cartIcon" onClick={showCart}>Show Cart Items: {quantity}</h3>
+    <div className="cart-layout">
+      <button className="cartIcon" onClick={showCart}>Show Cart</button>
+      <h3>{quantity} items</h3>
     </div>
   );
 };

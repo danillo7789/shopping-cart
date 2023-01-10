@@ -1,4 +1,4 @@
-import React from "react";
+import { React, Fragment } from "react";
 import Header from "./Header";
 import Products from "./Products";
 import Cartitems from './CartItems'
@@ -14,7 +14,7 @@ const Layout = () => {
   })
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="layout">
         <Header />
         <div className="products"><Products /></div>
@@ -22,9 +22,9 @@ const Layout = () => {
         <div className="total-price">
           <h3>Total: ${total}</h3>
           <button className="orderBtn">Place Order</button>
-        </div>{" "}
+        </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
