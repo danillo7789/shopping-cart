@@ -26,12 +26,8 @@ const CartItem = ({ name, quantity, total, price, id }) => {
       <p>${price} /-</p>
       <p>x{quantity}</p>
       <article>Total ${total}</article>
-      <button className="cart-actions" onClick={removeCartItem}>
-        -
-      </button>
-      <button className="cart-actions" onClick={addCartItem}>
-        +
-      </button>
+      <button className="cart-actions" onClick={removeCartItem}> - </button>
+      <button className="cart-actions" onClick={addCartItem}> + </button>
     </div>
   );
 };

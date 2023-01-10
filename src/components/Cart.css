@@ -42,4 +42,13 @@ ul {
     border: none;
     background: rgb(10, 7, 24);
   }
+
+  @media (max-width: 525px){
+    .cartItem{
+      display: grid;
+      justify-content: unset;
+      position: relative;
+      justify-self: center;
+    }
+  }
   

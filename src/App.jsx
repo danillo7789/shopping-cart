@@ -11,8 +11,8 @@ import { sendCardData } from "./redux/cartSlice";
 let isFirstRender = true;
 
 function App() {
-  const { itemsList } = useSelector(state => state.cart);
-  console.log(itemsList);
+  // const { itemsList } = useSelector(state => state.cart);
+  // console.log(itemsList);
 
   const { isLoggedIn } = useSelector(state => state.auth);
   const cart = useSelector(state => state.cart);

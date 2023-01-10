@@ -10,4 +10,43 @@
     margin-top: 1rem;
     font-size: 20px;
   }
-  
+  /* .products{
+    margin-top: 6%;
+  }
+   */
+  /* @media (max-width: 645px) {
+    .products{
+      margin-top: 15%;
+    }
+  }
+  @media (max-width: 490px) {
+    .products{
+      margin-top: 15%;
+      justify-content: center;
+    }
+  }
+  @media (max-width: 480px) {
+    .products{
+      margin-top: 20%;
+      justify-content: center;
+    }
+  }
+  @media (max-width: 410px) {
+    .products{
+      margin-top: 30%;
+      justify-content: center;
+    }
+  }
+  @media (max-width: 360px) {
+    .products{
+      margin-top: 60%;
+      justify-content: center;
+    }
+  } */
+
+  /* @media (max-width: 320px) {
+    .products{
+      margin-top: 75%;
+      justify-content: center;
+    }
+  } */

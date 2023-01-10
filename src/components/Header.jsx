@@ -19,7 +19,7 @@ const Header = () => {
               Redux Shopping App
             </h2>
           </li>
-          <li><Cart /></li>
+          <li className="header-cart"><Cart /></li>
           <li>
             <button onClick={() => dispatch(logout())} className="logout-btn">Logout</button>
           </li>

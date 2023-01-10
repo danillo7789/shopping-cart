@@ -17,7 +17,7 @@ const Layout = () => {
     <React.Fragment>
       <div className="layout">
         <Header />
-        <Products />
+        <div className="products"><Products /></div>
        {showCart && <Cartitems />}
         <div className="total-price">
           <h3>Total: ${total}</h3>
