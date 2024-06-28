@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { showNotification } from "../redux/muiSlice";
+import { showNotification } from "../redux/muiSlice.js";
 
 const Notification = ({ type, message }) => {
   const { notification } = useSelector((state) => state.mui);

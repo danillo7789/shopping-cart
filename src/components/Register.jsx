@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../redux/userSlice';
-import { setUser } from '../redux/cartSlice';
+import { registerUser } from '../redux/userSlice.js';
+import { setUser } from '../redux/cartSlice.js';
 import { Link } from 'react-router-dom';
 import "./Register.css";
-// import './Auth.css'
 
 const Register = () => {
     const dispatch = useDispatch();
