@@ -38,7 +38,7 @@ const Auth = () => {
   }
 
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     const {email, password} = formData
     try {

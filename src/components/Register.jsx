@@ -18,11 +18,11 @@ const Register = () => {
       });
     };
   
-    const handleSignUp = async (e) => {
+    const handleSignUp = (e) => {
       e.preventDefault();
       const { email, password } = formData;
       try {
-        await dispatch(registerUser({ email, password }));
+        dispatch(registerUser({ email, password }));
       } catch (err) {
         console.error('Registration failed:', err);
       }
