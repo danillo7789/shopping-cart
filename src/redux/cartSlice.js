@@ -1,17 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { showNotification } from './muiSlice';
+import { databaseCart, ref, push } from '../firebase';
 
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         itemsList: [],
+        totalBrands: 0,
         totalQuantity: 0,
-        showCart: false
+        showCart: true,
+        user: null,
     },
     reducers: {
         addToCart: (state, action) => {
-            const newItem = action.payload
-            //to check if item is already available cart items
+            const newItem = action.payload;
             const existingItem = state.itemsList.find(item => item.id === newItem.id)
 
             if (existingItem) {
@@ -26,9 +28,9 @@ export const cartSlice = createSlice({
                     totalPrice: newItem.price,
                     name: newItem.name
                 });
-                state.totalQuantity++;
+                state.totalBrands++;
             }
-            
+            state.totalQuantity = state.itemsList.reduce((acc, item) => acc + item.quantity, 0)
         },
         removeFromCart: (state, action) => {
             const id = action.payload;
@@ -37,58 +39,66 @@ export const cartSlice = createSlice({
             
             if (existingItem.quantity === 1) {
                 state.itemsList = state.itemsList.filter(item => item.id !== id)
-                state.totalQuantity--;
+                state.totalBrands--;
             } else {
                 existingItem.quantity --;
                 existingItem.totalPrice -= existingItem.price
             }
+            state.totalQuantity = state.itemsList.reduce((acc, item) => acc + item.quantity, 0)
         },
         setShowCart: state => {
             state.showCart = !state.showCart
-        }
+        },
+        clearCart: (state) => {
+            state.itemsList = [];
+            state.totalBrands = 0;
+            state.totalQuantity = 0;
+            state.showCart = true
+        },
+        setUser: (state, action) => {
+            state.user = action.payload;
+        },
     }
 })
 
-export const sendCardData = (cart) => async (dispatch) => {
-    //send state when Sending request
+export const sendCardData = (cart) => async (dispatch, getState) => {
     dispatch(
         showNotification({
-        open: true,
-        message: 'Sending Request',
-        type: 'warning'
-    }));
-
-    const sendRequest = async (index) => {
-        const res = await fetch(`https://first-redux-${import.meta.env.VITE_DB_URL}.firebasedatabase.app/cartItems.json?i=${index}`, {
-            method: 'PUT',
-            body: JSON.stringify(cart)
-        })
-        const data = await res.json();
-        // console.log(data)
-
-        //send state when request is successful
-        dispatch(
-            showNotification({
             open: true,
-            message: 'Sent Request to database successfully',
-            type: 'success'
-        }))
-    };
+            message: 'Sending Request',
+            type: 'warning'
+        })
+    );
 
     try {
-        await sendRequest();
-    } catch (err) {
-        //when error occurs
+        const state = getState();
+        const user = state.user;
+
+        // Pushing cart data to Firebase Realtime Database
+        const cartRef = ref(databaseCart, 'cartItems');
+        await push(cartRef, { ...cart, user });
+
         dispatch(
             showNotification({
-            open: true,
-            message: 'Sending Request failed',
-            type: 'error'
-        }));
-    }
-    
-}
+                open: true,
+                message: 'Order placed successfully',
+                type: 'success'
+            })
+        );
 
-export const { addToCart, removeFromCart, setShowCart } = cartSlice.actions;
+    } catch (err) {
+        console.error('Sending Request failed:', err);
+        dispatch(
+            showNotification({
+                open: true,
+                message: 'Failed to place order',
+                type: 'error'
+            })
+        );
+    }
+};
+
+
+export const { addToCart, removeFromCart, setShowCart, setUser, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

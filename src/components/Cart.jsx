@@ -5,7 +5,8 @@ import { setShowCart } from "../redux/cartSlice";
 
 
 const Cart = () => {
-  const quantity = useSelector(state => state.cart.totalQuantity);
+  const quantity = useSelector(state => state.cart.totalBrands);
+  const cartState = useSelector(state =>  state.cart.showCart);
   const dispatch = useDispatch();
 
   const showCart = () => {
@@ -14,7 +15,7 @@ const Cart = () => {
 
   return (
     <div className="cart-layout">
-      <button className="cartIcon" onClick={showCart}>Show Cart</button>
+      <button className="cartIcon" onClick={showCart}>{cartState ? 'Hide Cart' : 'Show Cart'}</button>
       <h3>{quantity} items</h3>
     </div>
   );

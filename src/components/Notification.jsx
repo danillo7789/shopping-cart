@@ -6,6 +6,7 @@ import { showNotification } from "../redux/muiSlice";
 const Notification = ({ type, message }) => {
   const { notification } = useSelector((state) => state.mui);
   const dispatch = useDispatch();
+  
   const handleClose = () => {
     dispatch(showNotification({
         open: false,

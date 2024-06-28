@@ -3,15 +3,20 @@ import Header from "./Header";
 import Products from "./Products";
 import Cartitems from './CartItems'
 import "./Layout.css";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart, sendCardData } from "../redux/cartSlice";
 
 const Layout = () => {
   let total = 0;
-  const { showCart } = useSelector(state => state.cart);
-  const { itemsList } = useSelector(state => state.cart);
-  itemsList.forEach(item => {
-    total += item.totalPrice
-  })
+  const dispatch = useDispatch();
+  const { showCart, itemsList } = useSelector(state => state.cart);
+  const cart = useSelector(state => state.cart);
+  itemsList.forEach(item => {total += item.totalPrice});
+
+  const handlePlaceOrder = () => {
+    dispatch(sendCardData(cart));
+    dispatch(clearCart());
+  }
 
   return (
     <Fragment>
@@ -21,7 +26,7 @@ const Layout = () => {
        {showCart && <Cartitems />}
         <div className="total-price">
           <h3>Total: ${total}</h3>
-          <button className="orderBtn">Place Order</button>
+          <button onClick={handlePlaceOrder} className="orderBtn">Place Order</button>
         </div>
       </div>
     </Fragment>
