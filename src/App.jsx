@@ -15,6 +15,7 @@ function App() {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const { notification } = useSelector(state => state.mui);
+  console.log(isLoggedIn)
 
   // useEffect(() => {
   //   if (isFirstRender) {
@@ -33,7 +34,7 @@ function App() {
         <Routes>
           <Route path="/login" element={isLoggedIn ? <Navigate to="/layout" /> : <Auth />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/layout" element={isLoggedIn ? <Layout /> : <Navigate to="/login" />} />
+          <Route path="/layout" element={<Layout />} />
           <Route path="/" element={isLoggedIn ? <Navigate to="/layout" /> : <Auth />} />
         </Routes>
       </div>
