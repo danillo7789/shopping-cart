@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { showNotification } from './muiSlice';
-import { databaseCart, ref, push } from '../firebase.jsx';
+import { databaseCart, ref, push } from '../firebase.js';
 
 export const cartSlice = createSlice({
     name: 'cart',
