@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Register from './components/Register';
 import Auth from "./components/Auth";
 import Layout from "./components/Layout";
@@ -9,8 +9,6 @@ import "./App.css";
 
 function App() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const cart = useSelector(state => state.cart);
-  const dispatch = useDispatch();
   const notification = useSelector(state => state.mui.notification);
 
   return (
@@ -18,10 +16,10 @@ function App() {
       <div className="App">
         {notification && <Notification type={notification.type} message={notification.message} />}
         <Routes>
-          <Route path="/home" element={isLoggedIn ? <Layout /> : <Navigate to="/login" />} />
-          <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Auth />} />
+          <Route path="/layout" element={isLoggedIn ? <Layout /> : <Navigate to="/login" />} />
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/layout" /> : <Auth />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <Auth />} />
+          <Route path="/" element={isLoggedIn ? <Navigate to="/layout" /> : <Auth />} />
         </Routes>
       </div>
     </Router>
